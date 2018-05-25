@@ -19,10 +19,14 @@ public class ElectronicsOrder extends Order{
                     if(getCustomerOwned() != null) {
                         if (getCustomerOwned().getGender() == "Женский") {
                             setDateConfirmed(new Date());
+                            System.out.println("Поздравляем валидация прошла успешно.");
+                            System.out.println("Заказ принят к исполнению: " + getDateConfirmed());
+                            return;
                         }
                     }
                 }
         }
+        System.out.println("Заказ не прошел валидацию.");
     }
 
     @Override
@@ -30,16 +34,28 @@ public class ElectronicsOrder extends Order{
         if(getBasePrice() <= 1000) {
             if (getShipToCity() != "Киев" || getShipToCity() == "Одесса") {
                 setTotalPrice(getBasePrice() + getBasePrice() * 0.15);
+                if(getDateConfirmed() != null) {
+                    System.out.println("Итоговая сумма заказа равна: " + getTotalPrice());
+                }
             } else {
                 setTotalPrice(getBasePrice() + getBasePrice() * 0.10);
+                if(getDateConfirmed() != null) {
+                    System.out.println("Итоговая сумма заказа равна: " + getTotalPrice());
+                }
             }
         } else{
             if (getShipToCity() != "Киев" || getShipToCity() == "Одесса") {
                 double result = getBasePrice() + getBasePrice() * 0.15;
                 setTotalPrice(result - result*0.05);
+                if(getDateConfirmed() != null) {
+                    System.out.println("Итоговая сумма заказа равна: " + getTotalPrice());
+                }
             } else {
                 double result = getBasePrice() + getBasePrice() * 0.10;
                 setTotalPrice(result - result*0.05);
+                if(getDateConfirmed() != null) {
+                    System.out.println("Итоговая сумма заказа равна: " + getTotalPrice());
+                }
             }
         }
     }

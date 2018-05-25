@@ -18,18 +18,28 @@ public class FurnitureOrder extends Order{
                 if(getCustomerOwned() != null) {
                     if (getCustomerOwned().getName() != "Тест") {
                         setDateConfirmed(new Date());
+                        System.out.println("Поздравляем валидация прошла успешно.");
+                        System.out.println("Заказ принят к исполнению: " + getDateConfirmed());
+                        return;
                     }
                 }
             }
         }
+        System.out.println("Заказ не прошел валидацию.");
     }
 
     @Override
     public void calculatePrice() {
         if(getBasePrice() < 5000) {
                 setTotalPrice(getBasePrice() + getBasePrice() * 0.05);
+            if(getDateConfirmed() != null) {
+                System.out.println("Итоговая сумма заказа равна: " + getTotalPrice());
+            }
         } else{
             setTotalPrice(getBasePrice() + getBasePrice() * 0.02);
+            if(getDateConfirmed() != null) {
+                System.out.println("Итоговая сумма заказа равна: " + getTotalPrice());
+            }
         }
     }
 

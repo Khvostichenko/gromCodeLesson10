@@ -78,6 +78,9 @@ public abstract class Order {
     public void confirmShipping(){
         if(dateShipped == null){
             setDateShipped(new Date());
+            if(getDateConfirmed() != null) {
+                System.out.println("Дата отправления заказа: " + getDateShipped());
+            }
         }
     }
 
